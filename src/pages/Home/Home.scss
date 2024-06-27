@@ -1,0 +1,116 @@
+.home {
+  .container {
+    padding: 20px 70px;
+    display: flex;
+    height: calc(100vh - 70px);
+    gap: 20px;
+    .left {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      h1 {
+        font-size: 70px;
+        margin: 0;
+        span {
+          color: #b66055;
+        }
+      }
+      p {
+        color: #b2b2b2;
+        font-size: 18px;
+        span {
+          color: #b66055;
+          font-weight: bold;
+        }
+      }
+      button {
+        box-shadow: 10px 12px 16px -12px rgba(0, 0, 0, 0.37);
+        -webkit-box-shadow: 10px 12px 16px -12px rgba(0, 0, 0, 0.37);
+        -moz-box-shadow: 10px 12px 16px -12px rgba(0, 0, 0, 0.37);
+        height: 40px;
+        width: 300px;
+        font-size: 18px;
+        font-weight: 600;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        color: white;
+        background-color: #b66055;
+      }
+    }
+    .right {
+      display: flex;
+      justify-content: center;
+      width: 50%;
+      align-items: center;
+
+      img {
+        height: 583px;
+        width: 459px;
+        object-fit: cover;
+        border-radius: 23px;
+      }
+    }
+  }
+  .contactSection {
+    height: 75vh;
+    display: flex;
+    align-items: center;
+    .contact {
+      height: 300px;
+      width: 100%;
+
+      .info {
+        padding: 70px;
+        background-color: #fff0ed;
+        display: flex;
+
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        h2 {
+          font-size: 50px;
+          margin: 0;
+        }
+        p {
+          width: 600px;
+          text-align: center;
+          color: #b2b2b2;
+        }
+        .input {
+          form {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+            input {
+              border: none;
+              width: 400px;
+              border-radius: 5px;
+              height: 35px;
+              padding: 0px 20px;
+              border: 1px solid #b2b2b2;
+            }
+
+            button {
+              box-shadow: 10px 12px 16px -12px rgba(0, 0, 0, 0.37);
+              -webkit-box-shadow: 10px 12px 16px -12px rgba(0, 0, 0, 0.37);
+              -moz-box-shadow: 10px 12px 16px -12px rgba(0, 0, 0, 0.37);
+              height: 40px;
+              width: 150px;
+              font-size: 18px;
+              font-weight: 600;
+              border: none;
+              border-radius: 5px;
+              cursor: pointer;
+              color: white;
+              background-color: #b66055;
+            }
+          }
+        }
+      }
+    }
+  }
+}

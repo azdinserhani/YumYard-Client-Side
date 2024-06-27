@@ -1,0 +1,123 @@
+.AddPage {
+  width: 100%;
+  hr {
+    background-color: rgba(128, 128, 128, 0.301);
+    border: none;
+    height: 2px;
+  }
+  .head {
+    margin: 5px 70px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .container {
+    margin: 0px 25%;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    .field {
+      min-height: 120px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      .time {
+        width: 100%;
+        display: flex;
+
+        gap: 20px;
+        input {
+          width: 100%;
+        }
+      }
+      .country {
+        width: 50%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        option {
+          font-size: 20px;
+        }
+      }
+      input {
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 10px;
+        font-size: 17px;
+        border-width: 1.5px;
+      }
+      input:focus {
+        outline: none;
+        border-color: #c65645;
+      }
+      .action {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        gap: 20px;
+        input {
+          width: 100%;
+          border: 1px solid #ccc;
+          border-radius: 10px;
+          padding: 10px;
+          font-size: 17px;
+          border-width: 1.5px;
+        }
+        input:focus {
+          outline: none;
+          border-color: #c65645;
+        }
+      }
+      .item {
+        display: flex;
+        gap: 10px;
+        text-overflow: clip;
+
+        span {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: #c65645;
+          width: 50px;
+          height: 50px;
+          color: white;
+          font-size: 25px;
+          font-weight: 600;
+          box-shadow: 8px 8px 30px -12px rgba(0, 0, 0, 0.75);
+          -webkit-box-shadow: 8px 8px 30px -12px rgba(0, 0, 0, 0.75);
+          -moz-box-shadow: 8px 8px 30px -12px rgba(0, 0, 0, 0.75);
+          border-radius: 10px;
+        }
+
+        .instruction {
+          border: 2px solid rgba(0, 0, 0, 0.527);
+          border-radius: 10px;
+          padding: 10px;
+          font-weight: 700;
+          width: calc(100% - 50px);
+          overflow-wrap: break-word;
+        }
+      }
+    }
+  }
+  .field-img {
+    height: 300px;
+    margin-bottom: 50px;
+    .addImg {
+      margin-top: 20px;
+      border-radius: 10px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px #c65645;
+      border-style: dashed;
+      input {
+        display: none;
+      }
+    }
+  }
+}

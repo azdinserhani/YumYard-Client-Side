@@ -1,0 +1,61 @@
+.Post {
+  .container {
+   min-height: 590px;
+    width: 533px;
+    
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.185);
+    img {
+      height: 387px;
+      width: 100%;
+      object-fit: cover;
+    }
+    .info {
+      margin: 20px;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      height: 100%;
+      .action {
+        p {
+            font-size: 25px;
+            font-weight: 600;
+        }
+      }
+      .user {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 50px;
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+          img {
+            height: 45px;
+            width: 45px;
+            object-fit: cover;
+            border-radius: 50%;
+          }
+          p {
+            font-size: 20px;
+          }
+        }
+        button {
+            background-color: #b66055;
+          color: white;
+          box-shadow: 10px 12px 16px -12px rgba(0, 0, 0, 0.37);
+          -webkit-box-shadow: 10px 12px 16px -12px rgba(0, 0, 0, 0.37);
+          -moz-box-shadow: 10px 12px 16px -12px rgba(0, 0, 0, 0.37);
+          height: 40px;
+          width: 150px;
+          font-size: 18px;
+          font-weight: 600;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
