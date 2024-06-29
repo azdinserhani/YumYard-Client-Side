@@ -6,9 +6,18 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import LockIcon from "@mui/icons-material/Lock";
 import LocalDiningIcon from "@mui/icons-material/LocalDining";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../context/authContext";
+
 
 const Login = () => {
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
+  const handleLogin = (e) => {
+    e.preventDefault();
+    login();
+    navigate("/");
+  };
   return (
     <div className="Login">
       <div className="card">
@@ -30,7 +39,7 @@ const Login = () => {
 
               <input type="text" placeholder="Password" />
             </div>{" "}
-            <button>Log In</button>
+            <button onClick={handleLogin}>Log In</button>
             <p>
               You don’t Have an account?{" "}
               <span onClick={() => navigate("/register")}>Sign Up</span>
@@ -47,6 +56,6 @@ const Login = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Login;

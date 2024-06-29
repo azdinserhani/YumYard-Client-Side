@@ -1,10 +1,11 @@
-import { useState } from "react";
-import "./style.scss"
+import { useContext } from "react";
+import "./style.scss";
 import {
   createBrowserRouter,
   Navigate,
   Outlet,
   RouterProvider,
+  useNavigate,
 } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import NavBar from "./components/navBar/NavBar";
@@ -13,8 +14,11 @@ import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import Feed from "./pages/Feed/Feed";
 import AddPage from "./pages/AddPage/AddPage";
+import { AuthContext } from "./context/authContext";
 
 function App() {
+  const { currentUser } = useContext(AuthContext);
+
   const Layout = () => {
     return (
       <div>
@@ -25,10 +29,22 @@ function App() {
       </div>
     );
   };
+
+  const ProtectedRoute = ({ children }) => {
+    if (!currentUser) {
+      //if user not logd in he dirctly go to login page
+      return <Navigate to="/login" />;
+    }
+    return children;
+  };
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Layout />,
+      element: (
+        <ProtectedRoute>
+          <Layout />
+        </ProtectedRoute>
+      ),
       children: [
         {
           path: "/",
@@ -38,23 +54,24 @@ function App() {
           path: "/profile",
           element: <Profile />,
         },
-        {
-          path: "/register",
-          element: <Register />,
-        },
-        {
-          path: "/login",
-          element: <Login />,
-        },
+
         {
           path: "/feed",
           element: <Feed />,
         },
         {
           path: "/AddPage",
-          element: <AddPage/>,
+          element: <AddPage />,
         },
       ],
+    },
+    {
+      path: "/register",
+      element: <Register />,
+    },
+    {
+      path: "/login",
+      element: <Login />,
     },
   ]);
 
