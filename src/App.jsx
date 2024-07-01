@@ -15,6 +15,7 @@ import Login from "./pages/Login/Login";
 import Feed from "./pages/Feed/Feed";
 import AddPage from "./pages/AddPage/AddPage";
 import { AuthContext } from "./context/authContext";
+import RecipeModel from "./pages/RecipeModel/RecipeModel";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -62,6 +63,10 @@ function App() {
         {
           path: "/AddPage",
           element: <AddPage />,
+        },
+        {
+          path: "/recipes/:id",
+          element: <RecipeModel/>,
         },
       ],
     },

@@ -1,8 +1,8 @@
 .Post {
   .container {
-   min-height: 590px;
+    min-height: 590px;
     width: 533px;
-    
+
     border-radius: 15px;
     overflow: hidden;
     border: 1px solid rgba(0, 0, 0, 0.185);
@@ -19,18 +19,19 @@
       height: 100%;
       .action {
         p {
-            font-size: 25px;
-            font-weight: 600;
+          font-size: 25px;
+          font-weight: 600;
         }
       }
       .user {
         display: flex;
-        justify-content: space-between;
+
         margin-top: 50px;
         .profile {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin: 0;
           img {
             height: 45px;
             width: 45px;
@@ -42,7 +43,7 @@
           }
         }
         button {
-            background-color: #b66055;
+          background-color: #b66055;
           color: white;
           box-shadow: 10px 12px 16px -12px rgba(0, 0, 0, 0.37);
           -webkit-box-shadow: 10px 12px 16px -12px rgba(0, 0, 0, 0.37);

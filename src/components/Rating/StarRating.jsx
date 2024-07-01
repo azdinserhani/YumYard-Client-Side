@@ -17,7 +17,7 @@ function StarRating({ rating }) {
     } else if (i === Math.ceil(rating) && !Number.isInteger(rating)) {
       stars.push(
         <i>
-          <StarHalfRoundedIcon fontSize="large"/>
+          <StarHalfRoundedIcon fontSize="large" />
         </i>
       );
     } else {
@@ -28,7 +28,7 @@ function StarRating({ rating }) {
       );
     }
   }
-  return <>{stars}</>;
+  return <div className="rating">{stars}</div>;
 }
 
 export default StarRating;

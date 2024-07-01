@@ -18,8 +18,7 @@ const Post = ({ post }) => {
               <img src={post.authaurImg} alt="" />
               <p>{post.authaurName}</p>
             </div>
-
-            <Button text="Follow" txtColor="white"/>
+            <Button text="Follow" txtColor="white" />
           </div>
         </div>
       </div>

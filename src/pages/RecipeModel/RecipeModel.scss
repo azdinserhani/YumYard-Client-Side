@@ -1,0 +1,193 @@
+.RecipeModel {
+  margin: 0px 70px;
+  width: 100%;
+  margin-top: 100px;
+  p {
+    color: gray;
+    font-size: 25px;
+    span {
+      color: black;
+      font-weight: bold;
+    }
+  }
+  h2 {
+    font-size: 50px;
+    margin-top: 50px;
+  }
+  .profile {
+    margin: 0;
+    width: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    img {
+      height: 45px;
+      width: 45px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    span {
+      margin: 0;
+    }
+  }
+  .detail {
+    margin-top: 20px;
+    display: flex;
+    width: 75%;
+    gap: 70px;
+    align-items: center;
+
+    .item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #b66055;
+      span {
+        color: black;
+        font-weight: bold;
+      }
+    }
+  }
+  hr {
+    margin-top: 10px;
+    background-color: rgba(128, 128, 128, 0.301);
+    border: none;
+    height: 2px;
+  }
+  .main-info {
+    margin-top: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    img {
+      width: 50%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+    .time {
+      span {
+        margin-left: 40px;
+        font-size: 20px;
+        font-weight: bold;
+      }
+    }
+    .description {
+      width: 40%;
+      p {
+        color: black;
+      }
+    }
+    .ingrediants {
+      width: 40%;
+      p {
+        color: black;
+        font-weight: bold;
+        font-size: 35px;
+      }
+      .item {
+        color: #b66055;
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+        margin-left: 30px;
+        gap: 10px;
+        span {
+          color: black;
+        }
+      }
+    }
+    .instructions {
+      width: 40%;
+      p {
+        font-weight: bold;
+        font-size: 35px;
+        color: black;
+      }
+      .item {
+        margin-top: 10px;
+        margin-left: 20px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        .num {
+          height: 35px;
+          width: 35px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #b66055;
+          font-weight: bold;
+          font-size: 20px;
+          color: white;
+
+          border-radius: 5px;
+        }
+        span {
+        }
+      }
+    }
+  }
+  .sec {
+    margin-top: 10px;
+    background-color: #b66055;
+    border: none;
+    height: 5px;
+    width: 50%;
+    border-radius: 25px;
+  }
+  .comment {
+    margin-top: 50px;
+    width: 50%;
+    p {
+      color: black;
+      font-weight: bold;
+      font-size: 35px;
+    }
+    hr {
+      width: 100%;
+      margin-top: 10px;
+      background-color: rgba(128, 128, 128, 0.301);
+      border: none;
+      height: 3px;
+    }
+    .add-comment {
+      margin-top: 30px;
+      form {
+        margin-left: 50px;
+        margin-top: 20px;
+        display: flex;
+        gap: 20px;
+        input {
+          width: 100%;
+          border: 1px solid #ccc;
+          border-radius: 10px;
+          padding: 10px;
+          font-size: 17px;
+          border-width: 1.5px;
+        }
+      }
+    }
+    .comments-list {
+      margin-top: 60px;
+      margin-left: 60px;
+      .profile {
+        .inf {
+          display: flex;
+          flex-direction: column;
+          .time {
+            color: gray;
+          }
+        }
+      }
+      p {
+        margin-left: 60px;
+        margin-top: 10px;
+        color: black;
+        font-weight: normal;
+        font-size: 15px;
+      }
+    }
+  }
+}
