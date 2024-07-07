@@ -6,17 +6,17 @@ const Post = ({ post }) => {
   return (
     <div className="Post">
       <div className="container">
-        <img src={post.recipeImg} alt="" />
+        <img src={post.recipe_img} alt="" />
         <div className="info">
           <div className="action">
             <StarRating rating={post.avrgRating} />
 
-            <p>{post.recipeTitle}</p>
+            <p>{post.title}</p>
           </div>
           <div className="user">
             <div className="profile">
-              <img src={post.authaurImg} alt="" />
-              <p>{post.authaurName}</p>
+              <img src={post.profile_img} alt="" />
+              <p>{post.username}</p>
             </div>
             <Button text="Follow" txtColor="white" />
           </div>

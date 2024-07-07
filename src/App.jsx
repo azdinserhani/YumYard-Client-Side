@@ -16,18 +16,25 @@ import Feed from "./pages/Feed/Feed";
 import AddPage from "./pages/AddPage/AddPage";
 import { AuthContext } from "./context/authContext";
 import RecipeModel from "./pages/RecipeModel/RecipeModel";
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from "@tanstack/react-query";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
-
+  const queryClient = new QueryClient();
   const Layout = () => {
     return (
-      <div>
-        <NavBar />
-        <div style={{ display: "flex" }}>
-          <Outlet />
+      <QueryClientProvider client={queryClient}>
+        <div>
+          <NavBar />
+          <div style={{ display: "flex" }}>
+            <Outlet />
+          </div>
         </div>
-      </div>
+      </QueryClientProvider>
     );
   };
 
@@ -66,7 +73,7 @@ function App() {
         },
         {
           path: "/recipes/:id",
-          element: <RecipeModel/>,
+          element: <RecipeModel />,
         },
       ],
     },

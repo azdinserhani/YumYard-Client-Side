@@ -3,12 +3,67 @@ import Button from "../../components/button/Button";
 import { useState } from "react";
 import countries from "../../contry";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import { makeRequest } from "../../axios.js";
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+  useQueryClient,
+  useMutation,
+} from "@tanstack/react-query";
 
 const AddPage = () => {
   const [ingredients, setIngredients] = useState([]);
   const [ingredientInput, setIngredientInput] = useState("");
   const [instructions, setInstructions] = useState([]);
   const [instructionsInput, setInstructionsInput] = useState("");
+  const [file, setFile] = useState(null);
+  const [inputs, setInputs] = useState({
+    title: "",
+    description: "",
+    defficulty_level: "",
+    cooking_time: "",
+    cuisine_type: "",
+  });
+
+  const upload = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      const res = await makeRequest.post("/upload", formData);
+      return res.data;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const queryClient = useQueryClient();
+   const mutation = useMutation({
+     mutationFn: (newPost) => {
+       return makeRequest.post("/posts", newPost);
+     },
+     onSuccess: () => {
+       // Invalidate and refetch
+       queryClient.invalidateQueries(["posts"]);
+     },
+   });
+
+  const handleClick = async (e) => {
+    e.preventDefault();
+    let imgUrl = "";
+    if (file) imgUrl = await upload();
+    mutation.mutate({ inputs, recipe_img: imgUrl, ingredients, instructions });
+    setFile(null);
+    setInputs({
+      title: "",
+      description: "",
+      defficulty_level: "",
+      cooking_time: "",
+      cuisine_type: "",
+    });
+    setIngredients([]);
+    setInstructions([]);
+  };
 
   const addIngredient = () => {
     if (ingredientInput.trim() !== "") {
@@ -43,6 +98,9 @@ const AddPage = () => {
               <AddPhotoAlternateIcon fontSize="large" />
             </label>
             <input type="file" id="img" />
+            {file && (
+              <img src={URL.createObjectURL(file)} alt="" className="file" />
+            )}
           </div>
         </div>
         <div className="field">

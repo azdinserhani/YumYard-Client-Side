@@ -1,8 +1,12 @@
 .Post {
+ width: 100%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
   .container {
     min-height: 590px;
     width: 533px;
-
+ 
     border-radius: 15px;
     overflow: hidden;
     border: 1px solid rgba(0, 0, 0, 0.185);

@@ -1,12 +1,22 @@
 import "./NavBar.scss";
 import LocalDiningIcon from "@mui/icons-material/LocalDining";
-import { Link ,useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../button/Button";
-
+import { useContext, useEffect } from "react";
+import Aos from "aos";
+import "aos/dist/aos.css";
+import { AuthContext } from "../../context/authContext";
 const NavBar = () => {
   const navigate = useNavigate();
+  useEffect(() => {
+    Aos.init({
+      duration: 1500,
+      once: true,
+    });
+  }, []);
+  const { currentUser } = useContext(AuthContext);
   return (
-    <div className="navBar">
+    <div className="navBar" data-aos="fade-down">
       <div className="left">
         <LocalDiningIcon />
 
@@ -19,13 +29,16 @@ const NavBar = () => {
         <span onClick={() => navigate("/feed")}>Recipes</span>
         <span onClick={() => navigate("/addPage")}>Add Recipe</span>
       </div>
+
       <div className="right">
-        <Link to="/login">
-          <button className="login">Login</button>
-        </Link>
-        <Link to="/register">
-          <Button text="Sign Up" txtColor="white"/>
-        </Link>
+        
+          <div className="user" onClick={()=> navigate("/profile")}>
+            <div className="profile">
+              <img src={currentUser.profilepic} alt="" />
+              <p>{currentUser.username}</p>
+            </div>
+          </div>
+        
       </div>
     </div>
   );
