@@ -6,7 +6,7 @@ const Post = ({ post }) => {
   return (
     <div className="Post">
       <div className="container">
-        <img src={post.recipe_img} alt="" />
+        <img src={"../../public/upload/"+post.recipe_img} alt="" />
         <div className="info">
           <div className="action">
             <StarRating rating={post.avrgRating} />

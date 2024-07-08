@@ -18,12 +18,27 @@
     display: flex;
     flex-direction: column;
     gap: 50px;
+
     .field {
       min-height: 120px;
       width: 100%;
       display: flex;
       flex-direction: column;
       gap: 10px;
+      .field-option {
+        display: flex;
+        gap: 20px;
+        .country-op,
+        .def-op {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          width: 100%;
+          select {
+            width: 100%;
+          }
+        }
+      }
       .time {
         width: 100%;
         display: flex;
@@ -33,7 +48,7 @@
           width: 100%;
         }
       }
-      .country {
+      .op {
         width: 50%;
         padding: 10px;
         border: 1px solid #ccc;
@@ -115,12 +130,16 @@
       justify-content: center;
       border: 3px #c65645;
       border-style: dashed;
+      position: relative;
       input {
         display: none;
-        .file{
-          height: 80px;
-          width: 80px;
-        }
+      }
+      .file {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 8px;
       }
     }
   }

@@ -4,13 +4,7 @@ import { useState } from "react";
 import countries from "../../contry";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import { makeRequest } from "../../axios.js";
-import {
-  QueryClient,
-  QueryClientProvider,
-  useQuery,
-  useQueryClient,
-  useMutation,
-} from "@tanstack/react-query";
+import { useQueryClient, useMutation } from "@tanstack/react-query";
 
 const AddPage = () => {
   const [ingredients, setIngredients] = useState([]);
@@ -30,7 +24,8 @@ const AddPage = () => {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      const res = await makeRequest.post("/upload", formData);
+      const res = await makeRequest.post("/api/upload", formData);
+      console.log("response data :"+res.data);
       return res.data;
     } catch (err) {
       console.log(err);
@@ -38,21 +33,37 @@ const AddPage = () => {
   };
 
   const queryClient = useQueryClient();
-   const mutation = useMutation({
-     mutationFn: (newPost) => {
-       return makeRequest.post("/posts", newPost);
-     },
-     onSuccess: () => {
-       // Invalidate and refetch
-       queryClient.invalidateQueries(["posts"]);
-     },
-   });
+  const mutation = useMutation({
+    mutationFn: async (newPost) => {
+      return await makeRequest.post("/api/posts", newPost);
+    },
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries(["posts"]);
+    },
+  });
 
   const handleClick = async (e) => {
     e.preventDefault();
     let imgUrl = "";
     if (file) imgUrl = await upload();
-    mutation.mutate({ inputs, recipe_img: imgUrl, ingredients, instructions });
+    // Log the state before mutation
+    console.log("Inputs before mutation:", inputs);
+    console.log("Ingredients before mutation:", ingredients);
+    console.log("Instructions before mutation:", instructions);
+    console.log("Image URL:", imgUrl);
+
+    // Ensure no null values are being sent
+    if (inputs.title === "" || !inputs.title) {
+      console.error("Title is required");
+      return;
+    }
+    mutation.mutate({
+      ...inputs,
+      recipe_img: imgUrl,
+      ingredients,
+      instructions,
+    });
     setFile(null);
     setInputs({
       title: "",
@@ -63,6 +74,7 @@ const AddPage = () => {
     });
     setIngredients([]);
     setInstructions([]);
+    console.log("cilcked");
   };
 
   const addIngredient = () => {
@@ -83,13 +95,21 @@ const AddPage = () => {
       <hr />
       <div className="head">
         <h1>Create new recipe</h1>
-        <Button text="Save" />
+        <i onClick={handleClick}>
+          <Button text="Save" />
+        </i>
       </div>
       <hr />
       <div className="container">
         <div className="field">
           <h2>Recipe Title:</h2>
-          <input type="text" placeholder="Recipe Title" />
+          <input
+            type="text"
+            placeholder="Recipe Title"
+            name="title"
+            value={inputs.title}
+            onChange={(e) => setInputs({ ...inputs, title: e.target.value })}
+          />
         </div>
         <div className="field-img">
           <h2>Recipe Image:</h2>
@@ -97,7 +117,11 @@ const AddPage = () => {
             <label htmlFor="img">
               <AddPhotoAlternateIcon fontSize="large" />
             </label>
-            <input type="file" id="img" />
+            <input
+              type="file"
+              id="img"
+              onChange={(e) => setFile(e.target.files[0])}
+            />
             {file && (
               <img src={URL.createObjectURL(file)} alt="" className="file" />
             )}
@@ -105,7 +129,15 @@ const AddPage = () => {
         </div>
         <div className="field">
           <h2>Recipe Description:</h2>
-          <input type="text" placeholder="Recipe Description" />
+          <input
+            type="text"
+            placeholder="Recipe Description"
+            name="description"
+            value={inputs.description}
+            onChange={(e) =>
+              setInputs({ ...inputs, description: e.target.value })
+            }
+          />
         </div>
         <div className="field">
           <h2>Ingredients:</h2>
@@ -151,22 +183,80 @@ const AddPage = () => {
         <div className="field">
           <h2>Cooking Time:</h2>
           <div className="time">
-            <input type="text" placeholder="0 Hours" />
-            <input type="text" placeholder="0 Min" />
+            <input
+              type="text"
+              placeholder="0 Hours"
+              name="title"
+              value={inputs.cooking_time.hours || ""}
+              onChange={(e) =>
+                setInputs({
+                  ...inputs,
+                  cooking_time: {
+                    ...inputs.cooking_time,
+                    hours: e.target.value,
+                  },
+                })
+              }
+            />
+            <input
+              type="text"
+              placeholder="0 Minute"
+              name="title"
+              value={inputs.cooking_time.minutes || ""}
+              onChange={(e) =>
+                setInputs({
+                  ...inputs,
+                  cooking_time: {
+                    ...inputs.cooking_time,
+                    minutes: e.target.value,
+                  },
+                })
+              }
+            />
           </div>
         </div>
-        <div className="field">
-          <h2>Cuisine:</h2>
-          <select name="contry" className="country">
-            <option disabled={true} selected={true}>
-              select coutry
-            </option>
-            {countries.map((country) => (
-              <option value={country.name} key={country.id}>
-                {country.name}
-              </option>
-            ))}
-          </select>
+        <div className="field ">
+          <div className="field-option">
+            <div className="country-op">
+              <h2>Cuisine:</h2>
+              <select
+                name="country"
+                className="op"
+                value={inputs.cuisine_type}
+                onChange={(e) =>
+                  setInputs({ ...inputs, cuisine_type: e.target.value })
+                }
+              >
+                <option disabled={true} value={""}>
+                  select coutry
+                </option>
+                {countries.map((country) => (
+                  <option value={country.name} key={country.id}>
+                    {country.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="def-op">
+              <h2>Defficulty:</h2>
+              <select
+                name="defficulty_level"
+                className="op"
+                value={inputs.defficulty_level}
+                onChange={(e) =>
+                  setInputs({ ...inputs, defficulty_level: e.target.value })
+                }
+              >
+                <option disabled={true} value={""}>
+                  select defficulty
+                </option>
+                <option value={"Easy"}>Easy</option>
+                <option value={"Medium"}>Medium</option>
+                <option value={"Hard"}>Hard</option>
+              </select>
+            </div>
+          </div>
         </div>
       </div>
     </div>
