@@ -6,6 +6,7 @@ Welcome to the YumYard client-side repository! This project is the frontend part
 
 - [Introduction](#introduction)
 - [Features](#features)
+- [Technologies Used](#technologies-used)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
@@ -17,17 +18,27 @@ YumYard is a web application designed to help users discover, manage, and share 
 
 ## Features
 
-- Browse and search for recipes
-- View detailed recipe information
-- Add and manage your own recipes
-- User authentication and profile management
-- Responsive design for mobile and desktop
+- **Recipe Browsing:** Browse and search for a variety of recipes.
+- **Detailed Views:** View detailed recipe information, including ingredients and steps.
+- **Recipe Management:** Add and manage your own recipes.
+- **User Authentication:** User login, registration, and profile management.
+- **Responsive Design:** Fully responsive design for mobile and desktop.
+
+## Technologies Used
+
+- **React:** JavaScript library for building user interfaces.
+- **Axios:** Promise-based HTTP client for making API requests.
+- **React Router:** Library for routing in React applications.
+- **React Toastify:** Library for displaying notifications.
+- **CSS Modules:** CSS file in which all class and animation names are scoped locally by default.
+- **HTML5 & CSS3:** Standard web technologies for building web pages.
+- **Node.js & npm:** Runtime environment and package manager for JavaScript.
 
 ## Installation
 
 To get started with the YumYard client-side project, follow these steps:
 
-1. Clone the repository:
+1. **Clone the repository:**
    ```sh
    git clone https://github.com/azdinserhani/YumYard-Client-Side.git
    cd YumYard-Client-Side
@@ -49,24 +60,24 @@ Make sure to set up the necessary environment variables in a .env file at the ro
 
 env
 Copy code
-VITE_API_URL=http://localhost:5000/api
-VITE_AUTH_URL=http://localhost:5000/auth
+REACT_APP_API_URL=http://localhost:5000/api
+REACT_APP_AUTH_URL=http://localhost:5000/auth
 Contributing
 Contributions are welcome! To contribute to this project, please follow these steps:
 
-Fork the repository.
-Create a new branch (git checkout -b feature/your-feature-name).
+Could you make the repository?
+Create a new branch: git checkout -b feature/your-feature-name
 Make your changes.
-Commit your changes (git commit -m 'Add some feature').
-Push to the branch (git push origin feature/your-feature-name).
+Commit your changes: git commit -m 'Add some feature'
+Push to the branch: git push origin feature/your-feature-name
 Open a pull request.
-Please make sure your code adheres to our coding standards and includes appropriate tests.
+Please ensure your code adheres to our coding standards and includes appropriate tests.
 
 
 
 Contact
 For any questions or feedback, please contact:
 
-Aze Eddine Serhani
+Az-eddine Serhani
 azdineserhani1@gmail.com
 Thank you for using YumYard!
