@@ -62,7 +62,7 @@ YumYard is a dynamic web application designed to help users discover, manage, an
   - Node.js
   - Express.js
   - PostgreSQL
-  - [YumYard Backend Repository](https://github.com/azdinserhani/YumYard-Backend-Side.git)
+  - [YumYard Backend Repository](https://github.com/azdinserhani/Yum-Yard-backendSide.git)
 
 ## Contributing
 
