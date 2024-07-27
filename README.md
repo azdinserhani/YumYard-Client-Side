@@ -1,6 +1,4 @@
-Here's a refined version of the README file for your `YumYard-Client-Side` repository:
 
-```markdown
 # YumYard Client-Side
 
 YumYard is a dynamic web application designed to help users discover, manage, and share recipes. This repository contains the client-side code for YumYard.
