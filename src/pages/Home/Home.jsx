@@ -1,5 +1,6 @@
 import "./Home.scss";
 import FoodImg from "../../assets/socialfood.jpg";
+import Share from "../../assets/share.jpg";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
@@ -35,7 +36,7 @@ const Home = () => {
       </div>
       <div className="container">
         <div className="right" data-aos="fade-right">
-          <img src={FoodImg} alt="" />
+          <img src={Share} alt="" />
         </div>
         <div className="left" data-aos="fade-left">
           <h1>

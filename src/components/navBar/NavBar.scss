@@ -1,9 +1,16 @@
+@import "../../style.scss";
 .navBar {
+
   display: flex;
   height: 70px;
 
+  position: relative;
+  z-index: 989; // Ensure the navbar is above the transition elements
+
   justify-content: space-between;
   padding: 5px 70px;
+  background-color: var(--bg);
+  color: var(--textColor);
   .left {
     display: flex;
 
@@ -13,6 +20,7 @@
       font-size: 20px;
       font-weight: bold;
       cursor: pointer;
+      
       span {
         color: #b66055;
       }
@@ -31,6 +39,9 @@
       color: #b66055;
       cursor: pointer;
     }
+    .active{
+      color: #b66055;
+    }
   }
   .right {
     display: flex;
@@ -39,6 +50,7 @@
     .profile {
       display: flex;
       align-items: center;
+      cursor: pointer;
       gap: 10px;
       margin: 0;
       img {

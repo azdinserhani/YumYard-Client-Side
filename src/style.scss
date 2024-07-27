@@ -1,9 +1,56 @@
-body{
-    margin: 0;
-    padding: 0;
-    font-family: "Roboto", sans-serif;
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
 }
-*{
-    margin: 0;
-    padding: 0;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+$themes: (
+  light: (
+    textColor: #000,
+    bg: white,
+    logo: darkblue,
+    bgSoft: #f6f3f3,
+    textColorSoft: #30a6ad,
+    border: lightgray,
+  ),
+  dark: (
+    textColor: whitesmoke,
+    bg: #222,
+    logo: white,
+    bgSoft: #333,
+    textColorSoft: lightgray,
+    border: #444,
+  ),
+);
+
+@function themed($theme, $key) {
+  @return map-get(map-get($themes, $theme), $key);
+}
+
+.theme-light {
+  --textColor: #{themed(light, textColor)};
+  --bg: #{themed(light, bg)};
+  --logo: #{themed(light, logo)};
+  --bgSoft: #{themed(light, bgSoft)};
+  --textColorSoft: #{themed(light, textColorSoft)};
+  --border: #{themed(light, border)};
+}
+
+.theme-dark {
+  --textColor: #{themed(dark, textColor)};
+  --bg: #{themed(dark, bg)};
+  --logo: #{themed(dark, logo)};
+  --bgSoft: #{themed(dark, bgSoft)};
+  --textColorSoft: #{themed(dark, textColorSoft)};
+  --border: #{themed(dark, border)};
+}
+
+.big-container {
+  background-color: var(--bg);
 }

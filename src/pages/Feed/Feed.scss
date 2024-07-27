@@ -1,7 +1,9 @@
+@import "../../style.scss";
 .Feed {
   margin-left: auto;
   margin-right: auto;
   h2 {
+    color: var(--textColor);
     margin-bottom: 50px;
   }
 }

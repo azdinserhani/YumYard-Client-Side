@@ -6,8 +6,10 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import LockIcon from "@mui/icons-material/Lock";
 import LocalDiningIcon from "@mui/icons-material/LocalDining";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const Register = () => {
   const [inputs, setInputs] = useState({
@@ -16,8 +18,15 @@ const Register = () => {
     password: "",
     repPassword: "",
   });
-
+    useEffect(() => {
+      Aos.init({
+        duration: 1500,
+        once: true,
+      });
+    }, []);
   const [err, setErr] = useState(null);
+  const [hide, setHide] = useState(false);
+
   const navigate = useNavigate();
   const handleChange = (e) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -39,10 +48,16 @@ const Register = () => {
   return (
     <div className="Register">
       <div className="card">
-        <div className="left"></div>
-        <div className="right">
+        <div className="left" data-aos="fade-down"></div>
+        <div className="right" data-aos="fade-up">
           <h1>Want to join our Family</h1>
-          <form>
+          <form
+            onSubmit={
+              inputs.password === inputs.repPassword
+                ? handleClick
+                : console.log("wrong")
+            }
+          >
             <div className="input-container">
               <i>
                 <PersonIcon />
@@ -53,6 +68,7 @@ const Register = () => {
                 placeholder="Username"
                 onChange={handleChange}
                 name="username"
+                required
               />
               <div className="underline"></div>
             </div>
@@ -62,10 +78,11 @@ const Register = () => {
               </i>
 
               <input
-                type="text"
+                type="email"
                 placeholder="Email"
                 onChange={handleChange}
                 name="email"
+                required
               />
             </div>{" "}
             <div className="input-container">
@@ -74,11 +91,17 @@ const Register = () => {
               </i>
 
               <input
-                type="text"
+                type={hide ? "password" : "text"}
                 placeholder="Password"
                 onChange={handleChange}
                 name="password"
+                required
               />
+              {hide ? (
+                <VisibilityIcon onClick={() => setHide(!hide)} />
+              ) : (
+                <VisibilityOffIcon onClick={() => setHide(!hide)} />
+              )}
             </div>{" "}
             <div className="input-container">
               <i>
@@ -86,13 +109,13 @@ const Register = () => {
               </i>
 
               <input
-                type="text"
+                type={hide ? "password" : "text"}
                 placeholder="Repeat Password"
                 onChange={handleChange}
                 name="repPassword"
               />
             </div>
-            <button onClick={inputs.password === inputs.repPassword ? handleClick : console.log("wrong")}>Sign Up</button>
+            <button type="submit">Sign Up</button>
           </form>
           <p>
             Already have an acount?{" "}

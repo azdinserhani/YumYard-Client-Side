@@ -21,16 +21,18 @@ import {
   QueryClientProvider,
   useQuery,
 } from "@tanstack/react-query";
+import { DarkModeContext } from "./context/darkModeContext";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
+  const { dark } = useContext(DarkModeContext);
   const queryClient = new QueryClient();
   const Layout = () => {
     return (
       <QueryClientProvider client={queryClient}>
-        <div>
+        <div className={`theme-${dark ? "dark" : "light"}`}>
           <NavBar />
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex" }} className="big-container">
             <Outlet />
           </div>
         </div>
@@ -59,7 +61,7 @@ function App() {
           element: <Home />,
         },
         {
-          path: "/profile",
+          path: "/profile/:id",
           element: <Profile />,
         },
 

@@ -1,11 +1,12 @@
 import "./AddPage.scss";
 import Button from "../../components/button/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import countries from "../../contry";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import { makeRequest } from "../../axios.js";
 import { useQueryClient, useMutation } from "@tanstack/react-query";
-
+import Aos from "aos";
+import "aos/dist/aos.css";
 const AddPage = () => {
   const [ingredients, setIngredients] = useState([]);
   const [ingredientInput, setIngredientInput] = useState("");
@@ -19,7 +20,12 @@ const AddPage = () => {
     cooking_time: "",
     cuisine_type: "",
   });
-
+    useEffect(() => {
+      Aos.init({
+        duration: 1500,
+        once: true,
+      });
+    }, []);
   const upload = async () => {
     try {
       const formData = new FormData();
@@ -48,10 +54,7 @@ const AddPage = () => {
     let imgUrl = "";
     if (file) imgUrl = await upload();
     // Log the state before mutation
-    console.log("Inputs before mutation:", inputs);
-    console.log("Ingredients before mutation:", ingredients);
-    console.log("Instructions before mutation:", instructions);
-    console.log("Image URL:", imgUrl);
+   
 
     // Ensure no null values are being sent
     if (inputs.title === "" || !inputs.title) {
@@ -91,7 +94,7 @@ const AddPage = () => {
     }
   };
   return (
-    <div className="AddPage">
+    <div className="AddPage" data-aos="fade-up">
       <hr />
       <div className="head">
         <h1>Create new recipe</h1>

@@ -1,6 +1,8 @@
+@import "../../style.scss";
 .profile {
   margin: 30px 70px;
   width: 100%;
+  color: var(--textColor);
   .main-info {
     display: flex;
     width: 100%;

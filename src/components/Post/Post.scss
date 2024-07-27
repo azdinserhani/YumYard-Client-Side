@@ -1,3 +1,4 @@
+@import "../../style.scss";
 .Post {
  width: 100%;
  display: flex;
@@ -9,11 +10,14 @@
  
     border-radius: 15px;
     overflow: hidden;
-    border: 1px solid rgba(0, 0, 0, 0.185);
+    border: 1px solid var(--border);
+    color: var(--textColor);
     img {
+      border-radius: 15px;
       height: 387px;
       width: 100%;
       object-fit: cover;
+      cursor: pointer;
     }
     .info {
       margin: 20px;
@@ -36,7 +40,9 @@
           align-items: center;
           gap: 10px;
           margin: 0;
+          cursor: pointer;
           img {
+            
             height: 45px;
             width: 45px;
             object-fit: cover;
