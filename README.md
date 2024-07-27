@@ -68,5 +68,5 @@ Contact
 For any questions or feedback, please contact:
 
 Aze Eddine Serhani
-GitHub Profile
+azdineserhani1@gmail.com
 Thank you for using YumYard!
