@@ -3,12 +3,12 @@ import Post from "../Post/Post.jsx";
 import { useQuery } from "@tanstack/react-query";
 import { makeRequest } from "../../axios.js";
 
-const Posts = () => {
+const Posts = ({userId}) => {
   const { isLoading, err, data } = useQuery({
     queryKey: ["posts"],
     queryFn: async () => {
       try {
-        const res = await makeRequest.get("/api/posts");
+        const res = await makeRequest.get("/api/posts?userId="+userId);
         console.log("API Response:", res.data); // Log API response
         return res.data;
       } catch (error) {

@@ -79,7 +79,11 @@ const NavBar = () => {
         </div>
         <div
           className="user"
-          onClick={() => navigate("/profile/" + currentUser.id)}
+          onClick={ () => {
+          
+            navigate("/profile/" + currentUser.id)
+             window.location.reload();
+          } }
         >
           <div className="profile">
             <img

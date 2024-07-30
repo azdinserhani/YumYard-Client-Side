@@ -1,19 +1,30 @@
 @import "../../style.scss";
 .update {
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // width: 100vw;
+  // padding: 50px;
+  // height: 100vh;
+  // background-color: var(--bgSoft);
+  // z-index: 999;
+  // display: flex;
+
+  // align-items: center;
+  // justify-content: center;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
+    top: 0;
+    left: 0;
+    width: 92vw;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    z-index: 999;
 
-  height: 100vh;
-background-color: var(--bgSoft);
-  z-index: 999;
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
   .container {
-    height: 90%;
+    height: 700px;
     width: 40%;
     border-radius: 40px;
     background-color: var(--bg);
@@ -64,7 +75,7 @@ background-color: var(--bgSoft);
           input {
             display: none;
           }
-          .edit{
+          .edit {
             z-index: 5100;
             font-size: 25px;
             background-color: #c65645;
@@ -73,12 +84,12 @@ background-color: var(--bgSoft);
             color: white;
           }
           .file {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 50%;
-      }
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+          }
         }
         input {
           border: 1px solid #ccc;

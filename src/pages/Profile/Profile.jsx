@@ -2,7 +2,12 @@ import "./Profile.scss";
 import Button from "../../components/button/Button";
 import Posts from "../../components/Posts/Posts";
 import { useLocation } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import {
+  QueryClient,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { makeRequest } from "../../axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/authContext";
@@ -15,30 +20,74 @@ const Profile = () => {
   const userId = parseInt(useLocation().pathname.split("/")[2]);
   const [userData, setUserData] = useState();
   const { currentUser } = useContext(AuthContext);
-
+  const currentId = parseInt(currentUser.id);
+  const [isFollowing, setIsFollowing] = useState(false);
+  const [followerCount, setFollowerCount] = useState(0);
+  const [RecipeCount, setRecipeCount] = useState(0);
+  const [followingCount, setFollowingCount] = useState(0);
   const { isLoading, err, data } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await makeRequest.get("/api/users/find/" + userId);
-      // Log API response
-      console.log(res.data);
-      
+
       setUserData(res.data);
     },
-    // onSuccess: () => {
-      
-    // },
   });
-    useEffect(() => {
-      Aos.init({
-        duration: 1500,
-        once: true,
-      });
-    }, []);
+  useEffect(() => {
+    Aos.init({
+      duration: 1500,
+      once: true,
+    });
+    const fetchData = async () => {
+      try {
+        const resRecipe = await makeRequest.get("/api/posts?userId=" + userId);
+        const resFollow = await makeRequest.get("/api/relation/" + userId);
+        console.log("following: " + resFollow.data.length);
+        setRecipeCount(resRecipe.data.length);
+        setFollowingCount(resFollow.data.length);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, []);
   const handleDataUpdate = (newData) => {
     setUserData(newData);
-  }
-  
+  };
+  //handl following system
+
+  const {
+    isLoading: rLoading,
+    err: rErr,
+    data: RelationData,
+  } = useQuery({
+    queryKey: ["relationships"],
+    queryFn: async () => {
+      const res = await makeRequest.get(
+        "/api/relation?followedUserId=" + userId
+      );
+      setIsFollowing(res.data.includes(currentId));
+      setFollowerCount(res.data.length);
+      return res.data;
+    },
+  });
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: (following) => {
+      if (following)
+        return makeRequest.delete("/api/relation?userId=" + userId);
+      return makeRequest.post("/api/relation", { userId });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["relationships"]);
+    },
+  });
+
+  const handleFollow = () => {
+    setFollowerCount((prev) => (isFollowing ? prev - 1 : prev + 1));
+    setIsFollowing(!isFollowing);
+    mutation.mutate(isFollowing);
+  };
   return (
     <div className="profile" data-aos="fade-up">
       {isLoading ? (
@@ -51,16 +100,21 @@ const Profile = () => {
           <div className="user-profile">
             <h1>{userData && userData.username}</h1>
             <div className="follow">
-              <span>20 Recipes</span>
-              <span>100 Followers</span>
-              <span>150 Following</span>
+              <span>{RecipeCount} Recipes</span>
+              <span>{followerCount} Followers</span>
+              <span>{followingCount} Following</span>
             </div>
-            {currentUser.id == userId ? (
+            {currentId === userId ? (
               <div onClick={() => setUpdate(true)}>
                 <Button text="Edit" className="btn" />
               </div>
             ) : (
-              <Button text="Follow" className="btn" />
+              <div onClick={handleFollow}>
+                <Button
+                  text={isFollowing ? "Following" : "Follow"}
+                  className="btn"
+                />
+              </div>
             )}
           </div>
         </div>
@@ -69,7 +123,7 @@ const Profile = () => {
       <hr />
       <h2>Shared Recipes</h2>
       <div className="post">
-        <Posts />
+        <Posts userId={userId} />
       </div>
       {update && (
         <Update

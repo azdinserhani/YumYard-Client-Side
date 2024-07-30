@@ -18,7 +18,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const [hide, setHide] = useState(false);
+  const [hide, setHide] = useState(true);
   const [err, setErr] = useState(null);
   const [loading, setloading] = useState(false);
     useEffect(() => {
