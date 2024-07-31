@@ -5,18 +5,20 @@ import BookmarkRoundedIcon from "@mui/icons-material/BookmarkRounded";
 import StarRating from "../../components/Rating/StarRating";
 import CheckBoxOutlineBlankRoundedIcon from "@mui/icons-material/CheckBoxOutlineBlankRounded";
 import CheckBoxRoundedIcon from "@mui/icons-material/CheckBoxRounded";
-import Button from "../../components/button/Button";
 import { useLocation } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { makeRequest } from "../../axios";
 import { useNavigate } from "react-router-dom";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import { AuthContext } from "../../context/authContext";
+import Comments from "../../components/comments/Comments";
 
 const RecipeModel = () => {
   const postId = parseInt(useLocation().pathname.split("/")[2]);
   const [data, setData] = useState(null);
+  const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
   useEffect(() => {
     Aos.init({
@@ -24,6 +26,9 @@ const RecipeModel = () => {
       once: true,
     });
   }, []);
+  
+
+
   useEffect(() => {
     const ftechData = async () => {
       try {
@@ -117,71 +122,8 @@ const RecipeModel = () => {
           </div>
         </div>
         <hr className="sec" />
-        <div className="comment">
-          <p>Comments</p>
-          <hr />
-          <div className="add-comment">
-            <div className="profile">
-              <img
-                src="https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?t=st=1719420490~exp=1719424090~hmac=1197b1c02ab2f658977727037993f03dd3dfd6ae586af5070f6d217760c779c7&w=826"
-                alt=""
-              />
-              <span>Az-eddine Serhani</span>
-            </div>
-            <form>
-              <input type="text" placeholder="Add Comment" />
-              <Button text={"Comment"} />
-            </form>
-          </div>
-          <div className="comments-list">
-            <div className="profile">
-              <img
-                src="https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?t=st=1719420490~exp=1719424090~hmac=1197b1c02ab2f658977727037993f03dd3dfd6ae586af5070f6d217760c779c7&w=826"
-                alt=""
-              />
-              <div className="inf">
-                <span>Az-eddine Serhani</span>
-                <span className="time">40 min ago</span>
-              </div>
-            </div>
-            <p>
-              Excellent recipe. I served this tonight for dinner and my family
-              loved it.
-            </p>
-          </div>
-          <div className="comments-list">
-            <div className="profile">
-              <img
-                src="https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?t=st=1719420490~exp=1719424090~hmac=1197b1c02ab2f658977727037993f03dd3dfd6ae586af5070f6d217760c779c7&w=826"
-                alt=""
-              />
-              <div className="inf">
-                <span>Az-eddine Serhani</span>
-                <span className="time">40 min ago</span>
-              </div>
-            </div>
-            <p>
-              Excellent recipe. I served this tonight for dinner and my family
-              loved it.
-            </p>
-          </div>
-          <div className="comments-list">
-            <div className="profile">
-              <img
-                src="https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?t=st=1719420490~exp=1719424090~hmac=1197b1c02ab2f658977727037993f03dd3dfd6ae586af5070f6d217760c779c7&w=826"
-                alt=""
-              />
-              <div className="inf">
-                <span>Az-eddine Serhani</span>
-                <span className="time">40 min ago</span>
-              </div>
-            </div>
-            <p>
-              Excellent recipe. I served this tonight for dinner and my family
-              loved it.
-            </p>
-          </div>
-        </div>
+        <Comments postId={postId}/>
+    
       </div>
     )
   );

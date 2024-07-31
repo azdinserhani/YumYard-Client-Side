@@ -1,6 +1,7 @@
 @import "../../style.scss";
 .RecipeModel {
   margin: 0px 70px;
+  margin-bottom: 70px;
   width: 100%;
   margin-top: 100px;
   color: var(--textColor);
@@ -168,6 +169,7 @@
           width: 100%;
           border: 1px solid #ccc;
           border-radius: 10px;
+          color: var(--textColor);
           padding: 10px;
           font-size: 17px;
           border-width: 1.5px;

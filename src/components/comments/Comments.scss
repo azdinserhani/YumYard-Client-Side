@@ -1,0 +1,56 @@
+
+.comment {
+    margin-top: 50px;
+    width: 50%;
+    p {
+      color: var(--textColor);
+      font-weight: bold;
+      font-size: 35px;
+    }
+    hr {
+      width: 100%;
+      margin-top: 10px;
+      background-color: rgba(128, 128, 128, 0.301);
+      border: none;
+      height: 3px;
+    }
+    .add-comment {
+      margin-top: 30px;
+      form {
+        margin-left: 50px;
+        margin-top: 20px;
+        display: flex;
+        gap: 20px;
+        input {
+          width: 100%;
+          border: 1px solid #ccc;
+          border-radius: 10px;
+          color: var(--textColor);
+          padding: 10px;
+          font-size: 17px;
+          border-width: 1.5px;
+          background-color: var(--bgSoft);
+        }
+      }
+    }
+    .comments-list {
+      margin-top: 60px;
+      margin-left: 60px;
+      .profile {
+        .inf {
+          display: flex;
+          flex-direction: column;
+          .time {
+            color: gray;
+          }
+        }
+      }
+      p {
+        margin-left: 60px;
+        margin-top: 10px;
+        color: var(--textColor);
+        font-weight: normal;
+        font-size: 15px;
+      }
+    }
+  }
