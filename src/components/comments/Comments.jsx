@@ -7,7 +7,7 @@ import "./Comments.scss";
 import { AuthContext } from "../../context/authContext";
 import { useContext, useState } from "react";
 
-const Comments = ({ postId }) => {
+const Comments = ({ postId, setCommentLength }) => {
   const { currentUser } = useContext(AuthContext);
   const [text, setText] = useState("");
 
@@ -46,6 +46,7 @@ const Comments = ({ postId }) => {
     mutation.mutate({ postId, text });
     setText("");
   };
+  setCommentLength(commentData && commentData.length);
   return (
     <div className="comment">
       <p>Comments</p>
@@ -96,4 +97,3 @@ const Comments = ({ postId }) => {
 };
 
 export default Comments;
-

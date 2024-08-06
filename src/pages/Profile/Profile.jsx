@@ -27,7 +27,7 @@ const Profile = () => {
   const [followingCount, setFollowingCount] = useState(0);
   const { isLoading, err, data } = useQuery({
     queryKey: ["users"],
-    queryFn: async () => {
+    queryFn: async () => { 
       const res = await makeRequest.get("/api/users/find/" + userId);
 
       setUserData(res.data);

@@ -17,21 +17,22 @@ const AddPage = () => {
     title: "",
     description: "",
     defficulty_level: "",
-    cooking_time: "",
+    cooking_time_hours: "",
+    cooking_time_minutes: "",
     cuisine_type: "",
   });
-    useEffect(() => {
-      Aos.init({
-        duration: 1500,
-        once: true,
-      });
-    }, []);
+  useEffect(() => {
+    Aos.init({
+      duration: 1500,
+      once: true,
+    });
+  }, []);
   const upload = async () => {
     try {
       const formData = new FormData();
       formData.append("file", file);
       const res = await makeRequest.post("/api/upload", formData);
-      console.log("response data :"+res.data);
+      console.log("response data :" + res.data);
       return res.data;
     } catch (err) {
       console.log(err);
@@ -54,7 +55,6 @@ const AddPage = () => {
     let imgUrl = "";
     if (file) imgUrl = await upload();
     // Log the state before mutation
-   
 
     // Ensure no null values are being sent
     if (inputs.title === "" || !inputs.title) {
@@ -72,7 +72,8 @@ const AddPage = () => {
       title: "",
       description: "",
       defficulty_level: "",
-      cooking_time: "",
+      cooking_time_hours: "",
+      cooking_time_minutes: "",
       cuisine_type: "",
     });
     setIngredients([]);
@@ -187,33 +188,21 @@ const AddPage = () => {
           <h2>Cooking Time:</h2>
           <div className="time">
             <input
-              type="text"
+              type="number"
               placeholder="0 Hours"
               name="title"
-              value={inputs.cooking_time.hours || ""}
+              value={inputs.cooking_time_hours}
               onChange={(e) =>
-                setInputs({
-                  ...inputs,
-                  cooking_time: {
-                    ...inputs.cooking_time,
-                    hours: e.target.value,
-                  },
-                })
+                setInputs({ ...inputs, cooking_time_hours: e.target.value })
               }
             />
             <input
-              type="text"
+              type="number"
               placeholder="0 Minute"
               name="title"
-              value={inputs.cooking_time.minutes || ""}
+              value={inputs.cooking_time_minutes}
               onChange={(e) =>
-                setInputs({
-                  ...inputs,
-                  cooking_time: {
-                    ...inputs.cooking_time,
-                    minutes: e.target.value,
-                  },
-                })
+                setInputs({ ...inputs, cooking_time_minutes: e.target.value })
               }
             />
           </div>

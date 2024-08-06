@@ -1,30 +1,42 @@
 @import "../../style.scss";
 .Post {
- width: 100%;
- display: flex;
- justify-content: center;
- align-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   .container {
     min-height: 590px;
     width: 533px;
- 
+
     border-radius: 15px;
     overflow: hidden;
     border: 1px solid var(--border);
     color: var(--textColor);
-    img {
-      border-radius: 15px;
-      height: 387px;
-      width: 100%;
-      object-fit: cover;
-      cursor: pointer;
-    }
+
     .info {
       margin: 20px;
       display: flex;
       justify-content: space-between;
       flex-direction: column;
       height: 100%;
+      position: relative;
+      img {
+        border-radius: 15px;
+        height: 387px;
+        width: 100%;
+        object-fit: cover;
+        cursor: pointer;
+      }
+      .bookmark {
+        position: absolute;
+        top: 5px;
+        // left: 0px;
+        right: 10px;
+        border-radius: 5px;
+        color: #b66055;
+        cursor: pointer;
+        background-color: #ebbeb957;
+      }
       .action {
         p {
           font-size: 25px;
@@ -42,7 +54,6 @@
           margin: 0;
           cursor: pointer;
           img {
-            
             height: 45px;
             width: 45px;
             object-fit: cover;
@@ -52,20 +63,23 @@
             font-size: 20px;
           }
         }
-        button {
-          background-color: #b66055;
-          color: white;
-          box-shadow: 10px 12px 16px -12px rgba(0, 0, 0, 0.37);
-          -webkit-box-shadow: 10px 12px 16px -12px rgba(0, 0, 0, 0.37);
-          -moz-box-shadow: 10px 12px 16px -12px rgba(0, 0, 0, 0.37);
-          height: 40px;
-          width: 150px;
-          font-size: 18px;
-          font-weight: 600;
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
+        .like {
+          color: #b66055;
         }
+        // button {
+        //   background-color: #b66055;
+        //   color: white;
+        //   box-shadow: 10px 12px 16px -12px rgba(0, 0, 0, 0.37);
+        //   -webkit-box-shadow: 10px 12px 16px -12px rgba(0, 0, 0, 0.37);
+        //   -moz-box-shadow: 10px 12px 16px -12px rgba(0, 0, 0, 0.37);
+        //   height: 40px;
+        //   width: 150px;
+        //   font-size: 18px;
+        //   font-weight: 600;
+        //   border: none;
+        //   border-radius: 5px;
+        //   cursor: pointer;
+        // }
       }
     }
   }
